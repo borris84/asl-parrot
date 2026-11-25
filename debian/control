@@ -12,7 +12,7 @@ Vcs-Browser: https://github.com/brucemack/microlink2
 Package: asl-parrot
 Architecture: any
 Multi-Arch: foreign
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}, adduser
 Description: ASL Parrot
  An Ampersand server that provides audio diagnostics.
  
