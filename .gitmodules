@@ -9,7 +9,7 @@
 	url = https://github.com/brucemack/kc1fsz-tools-cpp.git
 [submodule "amp-core"]
 	path = amp-core
-	url = https://github.com/Ampersand-ASL/amp-core.git
+	url = https://github.com/borris84/amp-core.git
 [submodule "itu-g711-codec"]
 	path = itu-g711-codec
 	url = https://github.com/brucemack/itu-g711-codec.git
@@ -22,3 +22,6 @@
 [submodule "g726-codec"]
 	path = g726-codec
 	url = https://github.com/brucemack/g726-codec.git
+[submodule "libg722"]
+	path = libg722
+	url = https://github.com/sippy/libg722.git

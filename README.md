@@ -28,6 +28,11 @@ by an FSK signal for synchronizing test devices.
 * DTMF 2 generates a fixed 440 Hz tone, 0.5 amplitude, 5 seconds. 
 * DTMF 3 generate 5 seconds of white noise.
 * Supports a pre-recorded program mode.
+* Accepts connections from apps (RepeaterPhone, DVSwitch Mobile, etc.) that use 
+[AllStarLink App Authentication](https://github.com/AllStarLink/Standards/blob/main/ASL002-App_Authentication.md)
+(the `allstar-public` IAX user). Controlled by `AMP_IAX_APPAUTH` in `/etc/asl-parrot.env`.
+* CODECs: 16K linear (slin16), 8K linear (slin), G.711 μ-law, G.726 and optionally 
+G.722 (`AMP_CODEC_G722=ON`).
 
 # Sweep Specifics
 

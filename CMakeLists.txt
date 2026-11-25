@@ -54,6 +54,8 @@ add_executable(asl-parrot
   amp-core/src/Transcoder_SLIN_16K.cpp
   amp-core/src/Transcoder_SLIN_8K.cpp
   amp-core/src/Transcoder_G726.cpp
+  amp-core/src/Transcoder_G722.cpp
+  amp-core/src/AppAuthValidatorCurl.cpp
   amp-core/src/Bridge.cpp
   amp-core/src/BridgeCall.cpp
   amp-core/src/BridgeIn.cpp
@@ -92,6 +94,8 @@ add_executable(asl-parrot
   g726-codec/src/g711.c
   g726-codec/src/g72x.c
   g726-codec/src/g726_32.c
+  libg722/g722_encode.c
+  libg722/g722_decode.c
 )
 add_dependencies(asl-parrot libpiper_untar)
 
@@ -105,6 +109,7 @@ target_include_directories(asl-parrot PRIVATE amp-core/include)
 target_include_directories(asl-parrot PRIVATE cpp-httplib)
 target_include_directories(asl-parrot PRIVATE json/include)
 target_include_directories(asl-parrot PRIVATE g726-codec/src)
+target_include_directories(asl-parrot PRIVATE libg722)
 
 # The untared libpiper
 target_include_directories(asl-parrot PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/libpiper/include)

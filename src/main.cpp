@@ -30,6 +30,7 @@
 #include <queue>
 #include <thread>
 #include <sstream>
+#include <memory>
 
 // 3rd party
 #include <curl/curl.h>
@@ -59,6 +60,8 @@
 #include "TTSService.h"
 #include "QueueConsumer.h"
 #include "LineParrot.h"
+#include "IAX2Util.h"
+#include "AppAuthValidatorCurl.h"
 
 // asl-parrot
 #include "service-thread.h"
@@ -177,6 +180,22 @@ int main(int argc, const char** argv) {
 
     if (getenv("AMP_IAX_CAPTURE") != 0)
         iax2Channel1.setCapture(true);
+
+    // Optional G.722 (wideband) CODEC support
+    if (getenv("AMP_CODEC_G722") != 0 && strcmp(getenv("AMP_CODEC_G722"), "ON") == 0) {
+        log.info("G.722 CODEC enabled");
+        setCodecEnabled(CODECType::IAX2_CODEC_G722, true);
+    }
+
+    // AllStarLink App Authentication (ASL002) so that apps (RepeaterPhone, 
+    // DVSwitch Mobile, etc.) can connect using the "allstar-public" user.
+    std::unique_ptr<AppAuthValidatorCurl> appAuthValidator;
+    if (getenv("AMP_IAX_APPAUTH") != 0 && strcmp(getenv("AMP_IAX_APPAUTH"), "ON") == 0) {
+        appAuthValidator = std::make_unique<AppAuthValidatorCurl>(log, 
+            getenv("AMP_APPAUTH_URL"));
+        iax2Channel1.setAppAuthValidator(appAuthValidator.get());
+        log.info("App authentication enabled");
+    }
 
     // Determine the address family, defaulting to IPv4
     short addrFamily = getenv("AMP_IAX_PROTO") != 0 && 
